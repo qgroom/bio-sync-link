@@ -3,7 +3,7 @@ import csv
 import json
 
 import requests
-
+import tripletSearcher
 
 def call_ena_api(row):
     uuid = row[22]
@@ -66,6 +66,9 @@ def main_method():
                     result = process_row(row)
                     if result:
                         write_result_to_file(writer, row, result)
+                    else:
+                        tripletSearcher.search_triplets(row, writer)
+
                 else:
                     break
 
