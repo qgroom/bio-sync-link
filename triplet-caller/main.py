@@ -9,7 +9,7 @@ def search_triplet(row, writer):
     col_triplet, space_triplet = build_triplet(row, True)
     if col_triplet:
         if validate_triplet(col_triplet, row[22]):
-            print("Valid triplet built")
+            print("Valid triplet built: " + col_triplet)
             results = requests.get(ena_endpoint + '"' + col_triplet + '"').json()
             if len(results) == 1:
                 write_positive_match(results[0], row, writer)
@@ -112,9 +112,8 @@ def main():
             if i > 1:
                 search_triplet(row, writer)
             i = i + 1
-            if i > 10000:
+            if i > 100000:
                 break
-
 
 if __name__ == '__main__':
     main()
